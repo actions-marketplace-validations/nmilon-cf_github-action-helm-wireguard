@@ -1,0 +1,19 @@
+name: 'Helm Ready Action'
+description: 'Action with kubectl, helm, wireguard and python-powerdns ready to use !'
+inputs:
+  kubeconfig: 
+    description: 'Kubeconfig file to connect to the cluster'
+    required: true
+  wireguard_config: 
+    description: 'Wireguard config file to use to connect to wireguard vpn'
+    required: false
+  exec:
+    description: 'Commands to run'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    KUBECONFIG: ${{ inputs.kubeconfig }}
+    WIREGUARD_CONFIG: ${{ inputs.wireguard_config }}
+    EXEC: ${{ inputs.exec }}
