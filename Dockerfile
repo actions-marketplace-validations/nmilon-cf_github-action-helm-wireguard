@@ -7,7 +7,7 @@ RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/s
 RUN sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 RUN pip install python-powerdns
-RUN ln -s 
+RUN ln -s /usr/bin/python3 /usr/bin/python
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
