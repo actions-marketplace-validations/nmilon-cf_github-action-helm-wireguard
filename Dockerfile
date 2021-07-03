@@ -1,8 +1,9 @@
 FROM ubuntu:latest
 
-RUN sudo apt-get install -y wireguard wireguard-tools resolvconf
-RUN mkdir -p ~/.kube;\
-    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"; \
-    sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl; \
-    curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-    pip install python-powerdns
+RUN apt update
+RUN apt-get install -y wireguard wireguard-tools openresolv gettext-base curl wget pip
+RUN mkdir -p ~/.kube
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+RUN sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+RUN pip install python-powerdns
